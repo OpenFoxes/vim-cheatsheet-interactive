@@ -1,23 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { KeyboardViewComponent } from './keyboard-view.component';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('KeyboardViewComponent', () => {
-  let component: KeyboardViewComponent;
-  let fixture: ComponentFixture<KeyboardViewComponent>;
+  let spectator: Spectator<KeyboardViewComponent>;
+  const createComponent = createComponentFactory(KeyboardViewComponent);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [KeyboardViewComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(KeyboardViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator).toBeTruthy();
   });
 });
