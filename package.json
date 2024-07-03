@@ -32,6 +32,7 @@
     "@angular/compiler-cli": "17.0.0",
     "@angular/localize": "17.0.0",
     "@eslint/js": "9.6.0",
+    "@ngneat/spectator": "17.1.0",
     "@types/jasmine": "5.1.0",
     "eslint": "9.6.0",
     "eslint-config-prettier": "9.1.0",
