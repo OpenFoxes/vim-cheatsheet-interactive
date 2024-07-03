@@ -1,0 +1,19 @@
+name: Project-Tests
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    name: Testing with coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: browser-actions/setup-chrome@v1
+      - name: install dependencies
+        run: npm ci
+      - name: run tests
+        run: npm run test-cov-headless
+      - name: lint-test project
+        run: npm run lint
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
