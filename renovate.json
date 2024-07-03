@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "description": "Renovate-Configuration for vim cheatsheet interactive",
+  "labels": ["👷 renovate"],
+  "prHourlyLimit": 20,
+  "recreateClosed": true,
+  "commitMessagePrefix": "⬆️ #5: ",
+  "commitMessageAction": "Upgrade",
+  "commitMessageTopic": "dependency {{depName}}",
+  "commitMessageExtra": "to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{prettyNewMajor}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "commitMessageAction": "Lockfile maintenance",
+    "prBodyDefinitions": { "Change": "Updated all locks" }
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["pin"],
+      "commitMessagePrefix": "📌 #5: ",
+      "commitMessageAction": "Pin",
+      "addLabels": ["pin"]
+    },
+    {
+      "matchUpdateTypes": ["rollback"],
+      "commitMessagePrefix": "⬇️ #5: ",
+      "commitMessageAction": "Downgrade"
+    }
+  ]
+}
