@@ -35,7 +35,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "localize": ["de-DE"]
+            "localize": ["en-US","de-DE"]
           },
           "configurations": {
             "production": {
