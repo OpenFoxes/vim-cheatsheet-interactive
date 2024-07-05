@@ -40,6 +40,6 @@ jobs:
           server: test.vimfo.org
           username: vimfo_test
           password: ${{ secrets.FTP_PASSWORD_TEST }}
-          local-dir: dist/vim-cheatsheet/browser/en-US/
+          local-dir: dist/vim-cheatsheet/browser/
           server-dir: /
     needs: [build]

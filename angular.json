@@ -13,7 +13,10 @@
       "i18n": {
         "sourceLocale": "en-US",
         "locales": {
-          "de-DE": "src/locale/messages.de.xlf"
+          "de-DE": {
+            "translation": "src/locale/messages.de.xlf",
+            "baseHref": "de"
+          }
         }
       },
       "root": "",
@@ -35,7 +38,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "localize": ["en-US","de-DE"]
+            "localize": false
           },
           "configurations": {
             "production": {
