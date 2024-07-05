@@ -9,12 +9,13 @@
     "test": "ng test",
     "test-cov-headless": "ng test --code-coverage --watch=false --browsers=ChromeHeadless",
     "format": "prettier . --write",
-    "lint": "eslint ."
+    "lint": "eslint",
+    "lint-inspect": "eslint --inspect-config"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "17.0.0",
-    "@angular/cdk": "^17.3.10",
+    "@angular/cdk": "17.3.10",
     "@angular/common": "17.0.0",
     "@angular/compiler": "17.0.0",
     "@angular/core": "17.0.0",
@@ -32,6 +33,7 @@
     "@angular/cli": "17.0.10",
     "@angular/compiler-cli": "17.0.0",
     "@angular/localize": "17.0.0",
+    "@eslint/config-inspector": "0.5.1",
     "@eslint/js": "9.6.0",
     "@ngneat/spectator": "17.1.0",
     "@types/jasmine": "5.1.0",
