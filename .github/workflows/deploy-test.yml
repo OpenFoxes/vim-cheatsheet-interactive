@@ -40,6 +40,15 @@ jobs:
           server: test.vimfo.org
           username: vimfo_test
           password: ${{ secrets.FTP_PASSWORD_TEST }}
-          local-dir: dist/vim-cheatsheet/
+          local-dir: dist/vim-cheatsheet/browser/en-US/
           server-dir: /
+
+      - name: FTP-Upload (GER)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: test.vimfo.org
+          username: vimfo_test
+          password: ${{ secrets.FTP_PASSWORD_TEST }}
+          local-dir: dist/vim-cheatsheet/browser/de-DE/
+          server-dir: /de/
     needs: [build]
