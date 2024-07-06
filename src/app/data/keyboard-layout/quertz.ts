@@ -1,6 +1,6 @@
-import { KeyboardLayout } from '../../model/keyboard-layout.type';
+import { KeyboardBindingLayout } from '../../model/keyboard-layout.type';
 
-export const layoutQuertzSimple: KeyboardLayout = {
+export const layoutQuertzSimple: KeyboardBindingLayout = {
   name: 'QUERTZ (Simple)',
   rows: [
     {
@@ -25,7 +25,7 @@ export const layoutQuertzSimple: KeyboardLayout = {
   ],
 };
 
-export const layoutQuertzComplete: KeyboardLayout = {
+export const layoutQuertzComplete: KeyboardBindingLayout = {
   name: 'QUERTZ (Complete)',
   rows: [
     {
