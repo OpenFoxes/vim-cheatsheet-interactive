@@ -1,6 +1,6 @@
-import { KeyboardLayout } from '../../model/keyboard-layout.type';
+import { KeyboardBindingLayout } from '../../model/keyboard-layout.type';
 
-export const layoutQuertySimple: KeyboardLayout = {
+export const layoutQuertySimple: KeyboardBindingLayout = {
   name: 'QUERTY (Simple)',
   rows: [
     {
@@ -23,7 +23,7 @@ export const layoutQuertySimple: KeyboardLayout = {
   ],
 };
 
-export const layoutQuertyComplete: KeyboardLayout = {
+export const layoutQuertyComplete: KeyboardBindingLayout = {
   name: 'QUERTY (Complete)',
   rows: [
     {
