@@ -1,1 +1,7 @@
-<p>keyboard works!</p>
+@for (keyboardRow of keyboardRows; track keyboardRow) {
+  <div class="keyboard-row">
+    @for (keyboardKey of keyboardRow.keyslots; track keyboardKey) {
+      <div class="keyboard-key">{{ keyboardKey.symbol }}</div>
+    }
+  </div>
+}
