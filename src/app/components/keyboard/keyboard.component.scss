@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  border: 2px solid black;
+  background: #7f7f7f;
+
+  padding: 3rem;
+
+  .keyboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .keyboard-key {
+      padding: 2rem;
+      border: 1px solid black;
+      background: #cccccc;
+    }
+  }
+}
