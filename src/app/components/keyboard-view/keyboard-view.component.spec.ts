@@ -1,5 +1,5 @@
-import { KeyboardViewComponent } from './keyboard-view.component';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { KeyboardViewComponent } from './keyboard-view.component';
 
 describe('KeyboardViewComponent', () => {
   let spectator: Spectator<KeyboardViewComponent>;

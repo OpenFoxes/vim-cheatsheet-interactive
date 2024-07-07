@@ -1,5 +1,5 @@
-import { KeyboardKey } from './keyboard-key.type';
 import { KeyboardKeySlot } from './keyboard-key-slot';
+import { KeyboardKey } from './keyboard-key.type';
 
 /**
  * definition of a complete keyboard layout

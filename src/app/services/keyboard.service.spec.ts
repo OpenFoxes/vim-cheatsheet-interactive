@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { KeyboardService } from './keyboard.service';
 import { KeyboardBindingLayout } from '../model/keyboard-layout.type';
+import { KeyboardService } from './keyboard.service';
 
 const exampleLayout: KeyboardBindingLayout = {
   name: 'Testlayout',
