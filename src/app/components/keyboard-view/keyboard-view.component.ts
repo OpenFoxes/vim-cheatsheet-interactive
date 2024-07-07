@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { layoutQuertyComplete } from '../../data/keyboard-layout/querty';
 import { VimMode } from '../../model/vim-mode';
+import { KeyboardService } from '../../services/keyboard.service';
+import { KeyboardComponent } from '../keyboard/keyboard.component';
 
 /**
  * The keyboard-view defines a container surrounding the virtual keyboard.
@@ -9,12 +12,16 @@ import { VimMode } from '../../model/vim-mode';
 @Component({
   selector: 'app-keyboard-view',
   standalone: true,
-  imports: [],
+  imports: [KeyboardComponent],
   templateUrl: './keyboard-view.component.html',
   styleUrl: './keyboard-view.component.scss',
 })
 export class KeyboardViewComponent {
   private _currentMode = VimMode.NORMAL;
+
+  constructor(private readonly keyboardService: KeyboardService) {
+    keyboardService.defineAndBindSlots({ layout: layoutQuertyComplete });
+  }
 
   currentModeMessage() {
     switch (this._currentMode) {
