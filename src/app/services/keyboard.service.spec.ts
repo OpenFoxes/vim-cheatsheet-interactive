@@ -254,13 +254,76 @@ describe('KeyboardService', () => {
           ...exampleLayout,
           rows: [exampleLayout.rows[2]],
         },
-        verticalOffsets: [2],
+        verticalOffsets: [3],
       });
 
       expect(bindResult).withContext('Result should be false').toBeFalse();
       expect(service.keyboard.rows[0].keyslots[0].symbol)
         .withContext('Keyslots should be not set')
         .toEqual('[]');
+    });
+  });
+
+  describe('Define and Bind', () => {
+    it('should define and bind a simple layout', () => {
+      service.defineAndBindSlots({ layout: exampleLayout });
+
+      expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length);
+      expect(service.keyboard.rows[0].keyslots[0].symbol).toEqual('Foo');
+    });
+
+    it('should define and bind a layout with vertical offsets', () => {
+      service.defineAndBindSlots({
+        layout: exampleLayout,
+        verticalOffsets: [1, 2],
+      });
+
+      expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length + 3);
+      expect(service.keyboard.rows[0].keyslots).toHaveSize(0);
+      expect(service.keyboard.rows[1].keyslots[0].symbol).toEqual('Foo');
+    });
+
+    it('should define and bind a layout with horizontal offsets', () => {
+      service.defineAndBindSlots({ layout: exampleLayout, offsets: [1, 2, 3] });
+
+      expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length);
+      expect(service.keyboard.rows[0].keyslots).toHaveSize(
+        exampleLayout.rows[0].keys.length + 1,
+      );
+      expect(service.keyboard.rows[1].keyslots).toHaveSize(
+        exampleLayout.rows[1].keys.length + 2,
+      );
+      expect(service.keyboard.rows[2].keyslots).toHaveSize(
+        exampleLayout.rows[2].keys.length + 3,
+      );
+    });
+
+    it('should define and bind a layout with horizontal and vertical offsets', () => {
+      service.defineAndBindSlots({
+        layout: exampleLayout,
+        offsets: [1, 2, 3],
+        verticalOffsets: [2, 0, 1],
+      });
+
+      expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length + 3);
+      expect(service.keyboard.rows[0].keyslots)
+        .withContext('Vertical offset 1')
+        .toHaveSize(0);
+      expect(service.keyboard.rows[1].keyslots)
+        .withContext('Vertical offset 2')
+        .toHaveSize(0);
+      expect(service.keyboard.rows[2].keyslots)
+        .withContext('Horizontal offset 1')
+        .toHaveSize(exampleLayout.rows[0].keys.length + 1);
+      expect(service.keyboard.rows[3].keyslots)
+        .withContext('Horizontal offset 2')
+        .toHaveSize(exampleLayout.rows[1].keys.length + 2);
+      expect(service.keyboard.rows[4].keyslots)
+        .withContext('Vertical offset 3')
+        .toHaveSize(0);
+      expect(service.keyboard.rows[5].keyslots)
+        .withContext('Horizontal offset 3')
+        .toHaveSize(exampleLayout.rows[2].keys.length + 3);
     });
   });
 });

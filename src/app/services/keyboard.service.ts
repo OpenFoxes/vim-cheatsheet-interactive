@@ -154,4 +154,41 @@ export class KeyboardService {
 
     return true;
   }
+
+  /**
+   * defines a keyboard layout AND binds keys to it
+   * @param options
+   */
+  defineAndBindSlots(options: SlotBindingOptions) {
+    const allRowslots: number[] = [];
+
+    let rowId = 0;
+    options.layout.rows.forEach((row) => {
+      for (
+        let additionalRow = 0;
+        additionalRow <
+        (options.verticalOffsets !== undefined
+          ? options.verticalOffsets[rowId]
+          : 0);
+        additionalRow++
+      ) {
+        allRowslots.push(0);
+      }
+
+      allRowslots.push(
+        row.keys.length +
+          (options.offsets !== undefined ? options.offsets[rowId] : 0),
+      );
+
+      rowId++;
+    });
+
+    this.defineSlots({ allRowslots });
+
+    if (!this.bindToSlots(options)) {
+      throw new Error(
+        'Unexpected error in keybinding: internal definition error',
+      );
+    }
+  }
 }
