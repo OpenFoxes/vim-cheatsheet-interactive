@@ -12,6 +12,18 @@ const exampleLayout: KeyboardBindingLayout = {
   ],
 };
 
+const checkSlot = (
+  service: KeyboardService,
+  row: number,
+  rowslot: number,
+  expected: string,
+  message: string,
+) => {
+  expect(service.keyboard.rows[row].keyslots[rowslot].symbol)
+    .withContext(message)
+    .toEqual(expected);
+};
+
 describe('KeyboardService', () => {
   let service: KeyboardService;
 
@@ -78,9 +90,7 @@ describe('KeyboardService', () => {
         .withContext(`slot should be defined`)
         .toBeTruthy();
 
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext(`key field should be defined and empty`)
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'key field should be defined and empty');
     });
   });
 
@@ -94,10 +104,9 @@ describe('KeyboardService', () => {
 
     it('should bind keys to the existing slots', () => {
       const bindResult = service.bindToSlots({ layout: exampleLayout });
+
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('Keyslots should be set')
-        .toEqual('Foo');
+      checkSlot(service, 0, 0, 'Foo', 'Keyslots should be set');
     });
 
     it('should not bind on too few slots', () => {
@@ -113,9 +122,7 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be false').toBeFalse();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('Keyslots should be not set')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'Keyslots should not be set');
     });
 
     it('should not bind on too few rows', () => {
@@ -127,9 +134,7 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be false').toBeFalse();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('Keyslots should be not set')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'Keyslots should not be set');
     });
 
     it('should bind on too many slots', () => {
@@ -145,9 +150,7 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[2].keyslots[0].symbol)
-        .withContext('Keyslots should be set')
-        .toEqual('Foobar');
+      checkSlot(service, 2, 0, 'Foobar', 'Keyslots should be set');
     });
 
     it('should bind on too many rows', () => {
@@ -159,12 +162,8 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('Keyslots should be set')
-        .toEqual('Baz');
-      expect(service.keyboard.rows[1].keyslots[0].symbol)
-        .withContext('Further rows should stay untouched')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, 'Baz', 'Keyslots should be set');
+      checkSlot(service, 1, 0, '[]', 'Further rows should stay untouched');
     });
 
     it('should bind with offset', () => {
@@ -177,15 +176,9 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('First keyslot should not be set')
-        .toEqual('[]');
-      expect(service.keyboard.rows[0].keyslots[1].symbol)
-        .withContext('Second keyslot should be set')
-        .toEqual('Baz');
-      expect(service.keyboard.rows[1].keyslots[0].symbol)
-        .withContext('Other rows remain untouched')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'First keyslot should not be set');
+      checkSlot(service, 0, 1, 'Baz', 'Second keyslot should be set');
+      checkSlot(service, 1, 0, '[]', 'Other rows remain untouched');
     });
 
     it('should bind with vertical offset in the middle', () => {
@@ -198,15 +191,15 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('First rows keyslots should be set')
-        .toEqual('Foo');
-      expect(service.keyboard.rows[1].keyslots[0].symbol)
-        .withContext('Second rows keyslots should remain untouched')
-        .toEqual('[]');
-      expect(service.keyboard.rows[2].keyslots[0].symbol)
-        .withContext('Third rows keyslots should be set')
-        .toEqual('Baz');
+      checkSlot(service, 0, 0, 'Foo', 'First keyslot should not be set');
+      checkSlot(
+        service,
+        1,
+        0,
+        '[]',
+        'Second rows keyslots should remain untouched',
+      );
+      checkSlot(service, 2, 0, 'Baz', 'Third rows keyslots should be set');
     });
 
     it('should bind with vertical offset in the beginning', () => {
@@ -219,15 +212,15 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be true').toBeTrue();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('First rows keyslots should remain untouched')
-        .toEqual('[]');
-      expect(service.keyboard.rows[1].keyslots[0].symbol)
-        .withContext('Second rows keyslots should be set')
-        .toEqual('Baz');
-      expect(service.keyboard.rows[2].keyslots[0].symbol)
-        .withContext('Third rows keyslots should be set')
-        .toEqual('Foo');
+      checkSlot(
+        service,
+        0,
+        0,
+        '[]',
+        'First rows keyslots should remain untouched',
+      );
+      checkSlot(service, 1, 0, 'Baz', 'Second rows keyslots should be set');
+      checkSlot(service, 2, 0, 'Foo', 'Third rows keyslots should be set');
     });
 
     it('should not bind on too few slots (with offset)', () => {
@@ -240,12 +233,8 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be false').toBeFalse();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('First keyslot should not be set')
-        .toEqual('[]');
-      expect(service.keyboard.rows[0].keyslots[1].symbol)
-        .withContext('Second keyslot should not be set')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'First keyslot should not be set');
+      checkSlot(service, 0, 1, '[]', 'Second keyslot should not be set');
     });
 
     it('should not bind on too few rows (with offset)', () => {
@@ -258,9 +247,7 @@ describe('KeyboardService', () => {
       });
 
       expect(bindResult).withContext('Result should be false').toBeFalse();
-      expect(service.keyboard.rows[0].keyslots[0].symbol)
-        .withContext('Keyslots should be not set')
-        .toEqual('[]');
+      checkSlot(service, 0, 0, '[]', 'Keyslots should not be set');
     });
   });
 
@@ -269,7 +256,7 @@ describe('KeyboardService', () => {
       service.defineAndBindSlots({ layout: exampleLayout });
 
       expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length);
-      expect(service.keyboard.rows[0].keyslots[0].symbol).toEqual('Foo');
+      checkSlot(service, 0, 0, 'Foo', 'Keyslots should be set');
     });
 
     it('should define and bind a layout with vertical offsets', () => {
@@ -279,8 +266,10 @@ describe('KeyboardService', () => {
       });
 
       expect(service.keyboard.rows).toHaveSize(exampleLayout.rows.length + 3);
-      expect(service.keyboard.rows[0].keyslots).toHaveSize(0);
-      expect(service.keyboard.rows[1].keyslots[0].symbol).toEqual('Foo');
+      expect(service.keyboard.rows[0].keyslots)
+        .withContext('First row should be empty')
+        .toHaveSize(0);
+      checkSlot(service, 1, 0, 'Foo', 'Second row should be set');
     });
 
     it('should define and bind a layout with horizontal offsets', () => {
