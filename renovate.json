@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "description": "Renovate-Configuration for vim cheatsheet interactive",
-  "labels": ["👷 renovate"],
+  "labels": ["👷 renovate", "dependencies"],
   "prHourlyLimit": 20,
   "recreateClosed": true,
   "commitMessagePrefix": "⬆️ #5: ",
