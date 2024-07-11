@@ -5,6 +5,7 @@
   "labels": ["👷 renovate", "dependencies"],
   "prHourlyLimit": 20,
   "recreateClosed": true,
+  "prTitle": "[RFR] {{commitMessage}}",
   "commitMessagePrefix": "⬆️ #5: ",
   "commitMessageAction": "Upgrade",
   "commitMessageTopic": "dependency {{depName}}",
