@@ -34,10 +34,10 @@
     "@angular/compiler-cli": "17.3.11",
     "@angular/localize": "17.3.11",
     "@eslint/config-inspector": "0.5.1",
-    "@eslint/js": "9.6.0",
+    "@eslint/js": "9.7.0",
     "@ngneat/spectator": "17.1.0",
     "@types/jasmine": "5.1.4",
-    "eslint": "9.6.0",
+    "eslint": "9.7.0",
     "eslint-config-prettier": "9.1.0",
     "globals": "15.8.0",
     "jasmine-core": "5.1.2",
@@ -52,6 +52,6 @@
     "typescript-eslint": "7.16.0"
   },
   "overrides": {
-    "eslint": "9.6.0"
+    "eslint": "9.7.0"
   }
 }
