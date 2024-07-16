@@ -84,7 +84,7 @@ export class KeyboardService {
       return false;
     }
 
-    let rowId = 0;
+    let rowId = 0
     let verticalOffsetCounter = 0;
     let verticalOffsetNumber = 0;
     this._keyboard.rows.forEach((row) => {
