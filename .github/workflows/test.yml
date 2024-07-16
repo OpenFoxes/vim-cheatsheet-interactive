@@ -29,9 +29,11 @@ jobs:
   run-format:
     name: Format Code
     runs-on: ubuntu-latest
-    if: ${{ contains(github.ref, 'renovate/prettier') }}
+    if: ${{ contains(github.head_ref, 'renovate/prettier') }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
       - name: install dependencies
         run: npm ci
       - name: format project
