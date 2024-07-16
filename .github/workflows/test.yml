@@ -6,6 +6,9 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   test:
     name: Testing with coverage
@@ -23,3 +26,21 @@ jobs:
         uses: codecov/codecov-action@v4.5.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+  run-format:
+    name: Format Code
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.ref, 'renovate/prettier') }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: format project
+        run: npm run format
+      - name: commit format changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name 'OpenFoxes Renovate Helper'
+          git config --global user.email 'mail@bono-fox.de'
+          git commit -am "🎨 #42: Reformatted code"
+          git push
