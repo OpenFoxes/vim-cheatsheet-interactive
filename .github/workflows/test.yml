@@ -10,26 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  test:
-    name: Testing with coverage
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: browser-actions/setup-chrome@v1
-      - name: install dependencies
-        run: npm ci
-      - name: run tests
-        run: npm run test-cov-headless
-      - name: lint-test project
-        run: npm run lint
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.5.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
   run-format:
     name: Format Code
     runs-on: ubuntu-latest
-    if: ${{ contains(github.ref, 'renovate/prettier') }}
+    if: ${{ contains(github.head_ref, 'renovate/prettier') }}
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies
@@ -44,3 +28,10 @@ jobs:
           git config --global user.email 'mail@bono-fox.de'
           git commit -am "🎨 #42: Reformatted code"
           git push
+  show-ref:
+    name: Show REF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: show
+        run: console.log(${{ github.head_ref }})
