@@ -1,4 +1,4 @@
-type MinimalVimKeyBinding = {};
+interface MinimalVimKeyBinding {}
 
 export interface VimSoloKeyBinding extends MinimalVimKeyBinding {
   primaryKey: string;

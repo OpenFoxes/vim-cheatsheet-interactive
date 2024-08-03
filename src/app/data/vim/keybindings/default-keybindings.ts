@@ -1,5 +1,7 @@
 import { VimOperationKeyBindings } from './keybinding';
 
+// TODO: add keybindings to frontend
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultKeybindings: VimOperationKeyBindings = {
   simpleMoves: {
     moveLeft: {
