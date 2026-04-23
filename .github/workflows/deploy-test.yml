@@ -39,7 +39,7 @@ jobs:
           path: dist/
 
       - name: FTP-Upload
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: test.vimfo.org
           username: vimfo_test
